@@ -1,0 +1,115 @@
+[ Description ("A Module for things that should have been part of VBA") ]
+Module Sys
+
+'========1=========2=========3=========4=========5=========6=========7=========8=========9=========A=========B=========
+' Constants
+'========1=========2=========3=========4=========5=========6=========7=========8=========9=========A=========B=========
+
+    Public Const MaxByte                            As Byte = &HFF
+    Public Const MinByte                            As Byte = &H00
+
+    Public Const MaxInteger                         As Integer = &H7FFF
+    Public Const MinInteger                         As Integer = &H8000
+
+    Public Const MaxLong                            As Long = &H7FFFFFFF
+    Public Const MinLong                            As Long = &H80000000
+
+    Public Const MaxLongLong                        As LongLong = &H7FFFFFFFFFFFFFFF
+    Public Const MinLongLong                        As LongLong = &H8000000000000000
+
+    Public Const MaxSingle                          As Single = 3.402823E38
+    Public Const FirstPosSingle                     As Single = 1.401298E-45
+    Public Const MinSingle                          As Single = -3.402823E38
+    Public Const FirstNegSingle                     As Single = -1.401298E-45
+
+    Public Const MaxDate                            As Date = -657434
+    Public Const MinDate                            As Date = 2958465
+
+    ' The following definitions require the use of string coercion to avoid 
+    ' the literal value being decoded as a value of Type Single.
+    Public Const MaxDouble                          As Double = "1.79769313486232E308"
+    Public Const FirstPosDouble                     As Double = "4.94065645841247E-324"
+    Public Const MinDouble                          As Double = "-1.79769313486231E308"
+    Public Const FirstNegDouble                     As Double = "-4.94065645841247E-324"
+
+    Public Const MaxCurrency                        As Currency = "922,337,203,685,477.5807"
+    Public Const MinCurrency                        As Currency = "-922,337,203,685,477.5808"
+
+    Public Const MaxDecimal                         As Decimal = "79,228,162,514,264,337,593,543,950,335"
+    Public Const FirstPosDecimal                    As Decimal = "0.0000000000000000000000000001"
+    Public Const MinDecimal                         As Decimal = "-79,228,162,514,264,337,593,543,950,335"
+    Public Const FirstNegDecimal                    As Decimal = "-0.0000000000000000000000000001"
+
+'========1=========2=========3=========4=========5=========6=========7=========8=========9=========A=========B=========
+' Methods
+'========1=========2=========3=========4=========5=========6=========7=========8=========9=========A=========B=========
+
+
+    Public Function IsNotDate(ByRef ipItem As Variant) As Boolean
+        IsNotDate = Not VBA.IsDate(ipItem)
+    End Function
+
+
+    Public Function IsNotEmpty(ByRef ipItem As Variant) As Boolean
+        IsNotEmpty = Not VBA.IsEmpty(ipItem)
+    End Function
+
+
+    Public Function IsNothing(ByRef ipItem As Variant) As Boolean
+        IsNothing = ipItem Is Nothing
+    End Function
+
+    Public Function IsNotNothing(ByRef ipItem As Variant) As Boolean
+        IsNotNothing = ipItem IsNot Nothing
+    End Function
+
+
+    Public Function IsNotNull(ByRef ipItem As Variant) As Boolean
+        IsNotNull = Not VBA.IsNull(ipItem)
+    End Function
+
+
+    Public Function IsNotError(ByRef ipItem As Variant) As Boolean
+        IsNotError = Not IsError(ipItem)
+    End Function
+
+
+    Public Function IsNOtObject(ByRef ipItem As Variant) As Boolean
+        IsNOtObject = Not VBA.IsObject(ipItem)
+    End Function
+
+
+    Public Function IsNotMissing(ByRef ipItem As Variant) As Boolean
+        IsNotMissing = Not VBA.IsMissing(ipItem)
+    End Function
+
+
+    Public Function IsNotNumeric(ByRef ipItem As Variant) As Boolean
+        IsNotNumeric = Not VBA.IsNumeric(ipItem)
+    End Function
+
+
+    Public Sub Swap(ByRef iopLHS As Variant, ByRef iopRHS As Variant)
+        ' I'd be surprised if there wasn't a Declare for this action 
+        Dim myTemp As Variant
+        If VBA.IsObject(iopLHS) Then
+            Set myTemp = iopLHS
+        Else
+            myTemp = iopLHS
+        End If
+        
+        If VBA.IsObject(iopRHS) Then
+            Set iopLHS = iopRHS
+        Else
+            iopLHS = iopRHS
+        End If
+        
+        If VBA.IsObject(myTemp) Then
+            Set iopRHS = myTemp
+        Else
+            iopRHS = myTemp
+        End If
+            
+    End Sub
+
+End Module

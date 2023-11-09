@@ -1,0 +1,13 @@
+Class Var
+
+	' add your member fields and procedures here
+    Private Enum e_Entity           ' VC = VariableClassification
+    	m_Simple                    ' hold a single value that can be assigned without set
+        m_Compound                  ' User Defined Types
+        m_CompoundObject            ' Objects with one or more public properties
+        m_Holder                    ' Entities that have multiple values of the same type which are retrieved by some form of Keyed* access
+    End Enum
+    '* Keyed is the most general sense of one value returns another value
+    
+    p
+End Class
